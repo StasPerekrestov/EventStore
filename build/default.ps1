@@ -1,4 +1,4 @@
-properties {
+﻿properties {
     $base_directory = Resolve-Path .. 
 	$publish_directory = "$base_directory\publish-net40"
 	$build_directory = "$base_directory\build"
@@ -94,7 +94,7 @@ task PackageEventStore -depends Clean, Compile {
 task PackageMongoPersistence -depends Clean, Compile,PackageEventStore {
 	mkdir $output_directory\plugins\persistence\mongo | out-null
 
-	Merge-Assemblies -outputFile "$output_directory/plugins/persistence/mongo/EventStore.Persistence.MongoPersistence.dll" -exclude "MongoDB.*" -keyfile $keyFile -files @(
+	Merge-Assemblies -outputFile "$output_directory/plugins/persistence/mongo/EventStore.Persistence.MongoPersistence.dll" -exclude "EventStore.*" -keyfile $keyFile -files @(
 		"$src_directory/proj/EventStore.Persistence.MongoPersistence/bin/$target_config/EventStore.Persistence.MongoPersistence.dll",
 		"$src_directory/proj/EventStore.Persistence.MongoPersistence.Wireup/bin/$target_config/EventStore.Persistence.MongoPersistence.Wireup.dll"
 	)
